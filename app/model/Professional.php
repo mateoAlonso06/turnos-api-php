@@ -1,0 +1,93 @@
+<?php
+
+final class Professional 
+{
+    private int $id;
+    private int $userId;
+    private string $name;
+    private string $specialty;
+    private string $phone;
+    private bool $active;
+    private string $createdAt;
+
+    public function __construct(int $id, int $userId, string $name, string $specialty, string $phone, bool $active, string $createdAt)
+    {
+        $this->id = $id;
+        $this->userId = $userId;
+        $this->name = $name;
+        $this->specialty = $specialty;
+        $this->phone = $phone;
+        $this->active = $active;
+        $this->createdAt = $createdAt;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(int $userId): void
+    {
+        $this->userId = $userId;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getSpecialty(): string
+    {
+        return $this->specialty;
+    }
+
+    public function setSpecialty(string $specialty): void
+    {
+        $this->specialty = $specialty;
+    }
+
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    public function getActive(): bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(string $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+}
