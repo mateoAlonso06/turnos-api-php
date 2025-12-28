@@ -8,9 +8,17 @@ use Exception;
 
 class JwtUtils
 {
-    private const SECRET_KEY = 'secret_key_example';
     private const ALGORITHM = 'HS256';
     private const EXPIRATION_TIME = 3600; // 1 hora en segundos
+    
+    private static function getSecretKey(): string
+    {
+        $key = getenv('JWT_SECRET') ?: 'default_secret_key_min_32_characters_for_hs256_security';
+        if (strlen($key) < 32) {
+            throw new Exception('JWT_SECRET must be at least 32 characters long');
+        }
+        return $key;
+    }
 
     public static function generateToken(int $userId, string $email, string $role): string
     {
@@ -25,14 +33,14 @@ class JwtUtils
             'role' => $role
         ];
 
-        return JWT::encode($payload, self::SECRET_KEY, self::ALGORITHM);
+        return JWT::encode($payload, self::getSecretKey(), self::ALGORITHM);
     }
 
     public static function validateToken(string $token): object
     {
         try
         {
-            return JWT::decode($token, new Key(self::SECRET_KEY, self::ALGORITHM));
+            return JWT::decode($token, new Key(self::getSecretKey(), self::ALGORITHM));
         }
         catch (Exception $e)
         {
